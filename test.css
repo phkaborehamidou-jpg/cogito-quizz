@@ -28,8 +28,9 @@ padding: 0;
 }
 h2{
   font-family: 'Poppins', sans-serif;
-  font-size: 48px;
+  font-size: 2px;
    color: #1E3A8A;
+   
 
 }
 .descrip{
@@ -130,7 +131,7 @@ input{
 
 h3{
   color: #ffffff;
-  font-size: 25px;
+  font-size: 15px;
   font-family: 'Poppins', sans-serif;
   
   
@@ -163,6 +164,7 @@ h3{
   color: #F8FAFC;
   animation: pulse 2s infinite;
 transition: transform 0.2s;
+margin-top: 20px;
 
 }
 

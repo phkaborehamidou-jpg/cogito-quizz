@@ -116,7 +116,7 @@ display(i)
 
 function display(){
   if (i>questions.length-1){i=0}
-display_score()
+// display_score()
   function clear(){
   
     while(boite.firstElementChild){boite.firstElementChild.remove()}
@@ -146,8 +146,9 @@ function display_score(){
   const score_span=document.querySelector('span')??document.createElement('span');
   score_div.appendChild(score_span);
   score_span.innerText=`${score} / ${ total}`;
-  
-  main.insertBefore(score_div,boite)
+  // boite.appendChild(score_div)
+  const boite2=document.querySelector('.content')
+  boite.insertBefore(score_div,boite2)
 
 }
 function creat_question(question){
@@ -245,7 +246,7 @@ const iscorect=choice_label.innerText==corect;
 answer_label.classList.add('correct');
 choice_label.classList.add(iscorect?'correct':'incorrect')
 if(iscorect){score++};
-display_score()
+// display_score()
 
 
        }
