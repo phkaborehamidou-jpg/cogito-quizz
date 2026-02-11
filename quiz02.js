@@ -203,7 +203,7 @@ boite.appendChild(boutton_next);
 const two=setInterval(() => {
   inter-=1000;
   boutton_next.innerText=(`next(${inter/1000})`);
-  boutton_back.innerText=(`back(${inter/1000})`);
+  
   
 },1000);
 const one=setTimeout(()=>{
