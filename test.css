@@ -40,7 +40,7 @@ h1{
 }
 .boite{
     display: flex;
-    width: 100%;
+    width: 100vh;
     
     color: #000;
     justify-content: center;
