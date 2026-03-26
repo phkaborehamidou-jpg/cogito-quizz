@@ -98,162 +98,230 @@
   { question: "Quel est l’inventeur de la radio ?", options: ["Marconi", "Tesla", "Edison", "Bell"], answer: "Marconi" },
   { question: "Quel pays est surnommé 'le pays des mille lacs' ?", options: ["Finlande", "Suède", "Norvège", "Canada"], answer: "Finlande" }
 ];
+console.log(questions.length)
+function observateur(add,remove,main){
+const oberser=new IntersectionObserver((entry)=>{
+entry.forEach(element => {
+    if(element.isIntersecting){
+        element.target.classList.remove(remove);
+        element.target.classList.add(add);
+        
+    }
 
+});
+},{threshold:0.5})
 
-
-const boutton=document.querySelector('button[class="start-button"]');
-const boite=document.querySelector('section');
-const main=document.querySelector('body');
-
-
-boutton.addEventListener('click',newb);
-function newb(){
-
-let i=1;
-let score=0;
-let total=0;
-display(i)
-
-function display(){
-  if (i>questions.length-1){i=0}
-// display_score()
-  function clear(){
-  
-    while(boite.firstElementChild){boite.firstElementChild.remove()}
-
-  }
-    clear();
-function next(){
-  i++;
-  display(i)
-}
-
-const current=questions[i];
-
-
-const corect=current.answer
-console.log(corect);
-const questionn=creat_question(current.question);
-
-boite.appendChild(questionn)
-creat()
-
-function display_score(){
-  
-
-  const score_div=document.querySelector('h4')??document.createElement('h4');
-  score_div.classList.add('score_div')
-  const score_span=document.querySelector('span')??document.createElement('span');
-  score_div.appendChild(score_span);
-  score_span.innerText=`${score} / ${ total}`;
-  // boite.appendChild(score_div)
-  const boite2=document.querySelector('.content')
-  boite.insertBefore(score_div,boite2)
-
-}
-function creat_question(question){
-const para=document.createElement('h3');
-para.innerText=question;
-return para
+oberser.observe(main);
 };
-function creat(){
 
-    const reponses=current.options;
-    const cont=document.createElement('nav');
-    cont.classList.add('conteneur-questions');
-     for(let reponse of reponses){
-      
-     const conteneu=document.createElement('div')
-     conteneu.classList.add('div-qns');
-   
-   const new_but=document.createElement('button');
+
+const title=document.querySelector('h1');
+observateur('show','hidden',title);
+const rest=document.querySelector('.rest_nav');
+observateur('show','hidden2',rest);
+
+
+setTimeout(()=>{
+    title.classList.remove('underline');
+      title.classList.add('underline2');  
+},4000)
+
+
+function app(){
+let i=0;
+let total=0;
+let score=0;
+    display(i)
+
+function display(i){
+    if(i<0){i=0}
+
+    const boite=recuperator('.under_boite');
   
-     new_but.classList.add('reponse_btn');
-   
-    const idd=reponse.replaceAll(" ","_").toLowerCase();
-    const label=document.createElement('label');
-    label.htmlFor=idd+"la"; 
-      new_but.id=idd;
-    label.innerText=reponse;
-    
-      const input=document.createElement('input');
-      input.name="answer"
-      input.id=idd+"la";
-      input.type='radio';
-    
-   
-      new_but.appendChild(label);
-conteneu.appendChild(new_but)
-   conteneu.appendChild(input);
-   cont.appendChild(conteneu)
-    boite.appendChild(cont)
-    new_but.addEventListener('click',verify)
-  function verify(){
-        total++;
-  const  buttons=document.querySelectorAll('button');
-buttons.forEach(Element =>{Element.disabled=true})
-        suivant() 
-function suivant(){
-  const TIMEOUT=3000;
-  let inter=TIMEOUT;
-const boutton_next=document.createElement('button');
-boutton_next.classList.add('next')
-boutton_next.innerText=`next(${inter/1000}s)`;
-boite.appendChild(boutton_next);
-// back boutton
-const two=setInterval(() => {
-  inter-=1000;
-  boutton_next.innerText=(`next(${inter/1000})`);
-  
-  
-},1000);
-const one=setTimeout(()=>{
-i++;
-call()
- },TIMEOUT)
- 
-
-function call(){
-  i++;
-
-   display(i)
- }
- boutton_next.addEventListener('click',()=>{
-  boite.classList.add('section')
-clearTimeout(one);
-call()
-
- })
-
-}
-
-
-
-
-  
-const answer_input=document.querySelector(`input[id=${corect.replaceAll(" ","_").toLowerCase()}]`);
-
-const answer_label=document.querySelector(`label[for=${corect.replaceAll(" ","_").toLowerCase()+"la"}]`);
-console.log(answer_label);
-const choice_button=document.querySelector(`button[id="${this.id}"]`);
-
-console.log(choice_button);
-const choice_label=document.querySelector(`label[for="${this.id+"la"}"]`);
-
-console.log(choice_label);
-const iscorect=choice_label.innerText==corect;
-
-answer_label.classList.add('correct');
-choice_label.classList.add(iscorect?'correct':'incorrect')
-if(iscorect){score++};
-// display_score()
-
-
-       }
-  }
-
-
+     crush_elements(boite);
+     dispay_score()
+     display_question();
+     display_answer()
      
-}
-}}
+           
+        
+                const content_btns=element_creator('div');
+                content_btns.classList.add('content_btns')
+
+             const next_btn=element_creator('button');
+              const prev_btn=element_creator('button');
+
+             next_btn.classList.add('next_btn')
+             prev_btn.classList.add('next_btn')
+             content_btns.appendChild(prev_btn)
+                content_btns.appendChild(next_btn)
+             boite.appendChild(content_btns);
+             let inter=3000;
+             next_btn.innerText=`>`;
+             prev_btn.innerText=`<`;
+            prev_btn.addEventListener('click',()=>{
+                i-=1
+                display(i)
+            })
+
+             next_btn.addEventListener('click',(events)=>{
+                events.stopPropagation()
+       
+            i++;
+         
+            display(i);
+
+         })
+
+
+
+
+
+
+         
+      
+      
     
+    function recuperator(element){
+        const boit=document.querySelector(element)
+        return boit
+        }
+    
+     function dispay_score(){
+        const score_conteneur=document.querySelector('h4')??element_creator('h4');
+        score_conteneur.innerText=`${score}/${total}`;
+        console.log('what s happenning')
+        const inn=recuperator('h2')
+        boite.insertBefore(score_conteneur,inn);
+
+     }
+     function crush_elements(x){
+       
+          while(x.firstElementChild){boite.firstElementChild.remove()}
+        };
+   
+        function element_creator(element){
+            const ele=document.createElement(element)
+            return ele
+        }
+        function display_question(){
+            const conteneur_quest=element_creator('h2');
+            conteneur_quest.classList.add('question')
+            conteneur_quest.innerText=questions[i].question;
+            boite.appendChild(conteneur_quest)
+        };
+        function display_answer(){
+            const section=element_creator('section');
+             const conteneur_answer=element_creator('div');
+            conteneur_answer.classList.add('boite_answers');
+            boite.appendChild(section);
+            section.appendChild(conteneur_answer)
+
+            const index= questions[i].options;
+           index.forEach(el=>{
+            const ID=el.replaceAll(" ","-");
+                const ans=element_creator('button');
+                ans.classList.add('answer_btn')
+                ans.id=ID
+                const label=element_creator('label');
+                const input=element_creator('input');
+             
+               
+                input['type']='radio';
+                input.id=ID+'in';
+                input.name='answer';
+                label.htmlFor=ID+'in';
+
+                label.classList.add(ID)
+                 input.addEventListener('click',events=>{
+                events.stopPropagation()
+              
+            })
+
+                label.innerText=`${el}`;
+                ans.appendChild(label)
+                ans.appendChild(input);
+                conteneur_answer.appendChild(ans);
+                ans.addEventListener('click',check);
+             
+
+            })
+            
+    
+                function check(){
+                    
+    
+
+                    total++;
+                disable_btns();
+
+                proccesser(this.id);
+                    
+
+               const timeE= setTimeout(()=>{
+                display(i+1)
+            },3000);
+
+            next_btn.addEventListener('click',()=>{
+       
+            i++;
+            argument=false;
+            clearTimeout(timeE)
+            display(i);
+
+         })
+
+
+        }
+                
+           
+               
+        }
+   
+
+
+        function disable_btns(){
+            
+            const boutons=document.querySelectorAll('.answer_btn');
+            boutons.forEach(btn=>{
+                btn.disabled=true
+            })
+      
+
+        }
+                function proccesser(ind){
+                      get_correct_answer()
+
+                      const choice=recuperator(`label[class="${ind}"]`);
+                      const choice_buton=recuperator(`#${ind}`);
+             
+                    if(choice.innerText!=questions[i].answer){
+                        choice_buton.classList.add('incorrect')
+                    }else{score++}
+                    dispay_score()
+        
+
+       function get_correct_answer(){
+                    const corect_id=questions[i].answer.replaceAll(" ","-");
+                    const corect=recuperator(`#${corect_id}`);
+                    corect.classList.add('corect');
+                    
+                }
+
+                        
+                }
+                
+         
+           
+                
+            } }
+  
+
+
+
+
+
+const bouton=document.querySelector('.start_button');
+bouton.addEventListener('click',app)
+
+
