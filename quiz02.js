@@ -109,7 +109,7 @@ entry.forEach(element => {
     }
 
 });
-},{threshold:0.5})
+},{threshold:0.1})
 
 oberser.observe(main);
 };
