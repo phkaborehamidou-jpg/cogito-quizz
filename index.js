@@ -382,24 +382,17 @@ function blind(){
     add_tache.addEventListener('click',add_task);
 
     menu_item0.onclick=()=>{
-        const is_datas=is_data();
-  if(is_datas!==false){
+    const is_datas=is_data();
+  if(is_datas!=false){
      change_menu_item(menu_item0);
-
-           
-        alert(is_data)
-   
-        const  project=getActive();
-        project.tasks[0].disp='dispo';
-        render()
+    const  project=getActive();
+    project.tasks[0].disp='dispo';
+    render()
     }}
 
       menu_item1.onclick=()=>{
           const is_datas=is_data()
-         if(is_datas!==false){
-    
-       
-    alert(is_datas)
+         if(is_datas!=false){
         change_menu_item(menu_item1);
         const  project=getActive();
         project.tasks[1].disp='dispo';
@@ -408,7 +401,7 @@ function blind(){
     
       menu_item2.onclick=()=>{
                 const is_datas=is_data();
-            if(is_datas!==false){
+            if(is_datas!=false){
     
            change_menu_item(menu_item2);
 
