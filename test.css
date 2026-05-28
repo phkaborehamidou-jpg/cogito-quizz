@@ -7,33 +7,38 @@ color: #ccc;
   font-family: Inter, Arial;
   
 }
+html{
+    color-scheme: dark;
+}
 .head{
     /* margin-left: 10px; */
     display: flex;
     justify-content: space-around;
+
 }
 
 body{
+
       background-color: #0A0d1A;;
       overflow: hidden;
       height: 100vh;
-   position: relative;
+      position: relative;
       flex-shrink: 0;
       width: 100%;
       overflow: hidden;
       box-sizing: border-box;
       scroll-behavior: none;
+  
     
 }
+
 header{
 position: fixed;
-  /* background-color: #0a0d1a6e;; */
-    background: rgba(255,255,255,0.05);
-  z-index: 10;
+background: rgba(255,255,255,0.05);
+z-index: 10;
 height: 80px;
 backdrop-filter: blur(10px);
-/* background-color: #120a1ac1; */
- width: 100%;
+width: 100%;
 display: flex;
 justify-content: space-evenly;
 box-shadow: 0px 1px 4px #000;
@@ -41,44 +46,41 @@ align-items: center;
 top: 0;
 
 }
+
 .title{
+
     text-transform: uppercase;
     text-shadow: 1px 3px 4px 4px black;
+
 }
+
 .input_projet,.taches_input,select{
+
      background: rgba(255,255,255,0.08);
     height: 40px;
     border-radius: 8px;
-   border: none;
-    /* outline: none; */
+    border: none;
     transition: 0.5s;
     padding: 7px;
-    /* margin-top: 10px; */
     max-width: 40%;
-    
-    
-
-
+    outline: none;
     &:focus{
         transform: scale(1.05);
-         border: solid 2px white;
-        
+         border: solid 2px white; 
     }
 }
-select{padding: 0;}
-
+.input_projet{
+    max-width: 50%;
+}
 .add_projet,.add_tache{
       background: linear-gradient(135deg, #6c5ce7, #00cec9);
       padding: 10px 15px;
       color: white;
       border: none;
       border-radius: 5px;
-    
-
 }
 .add_projet{
     margin-left: 20px;
-  
 }
 main{
     margin-top: 90px;
@@ -86,7 +88,7 @@ main{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     /* height: calc(-100%+80px); */
-    height: 100%;
+    height: 100vh;
     position: relative;
     /* overflow: hidden; */
 }
@@ -108,9 +110,6 @@ aside{
 }
 .adding_place{
 margin-top: 5px;
-display: flex;
-justify-content: center;
-
 *{
     margin-left: 10px;
     display: inline-block;
@@ -133,7 +132,6 @@ justify-content: center;
   box-shadow:  0 1px 4px rgba(7, 16, 198, 0.601);
   padding: 10px;
   overflow: hidden;
-  /* background-color: #00000071; */
   background-color: #0A0d1A;
 
   
@@ -143,24 +141,27 @@ justify-content: center;
 .projet{
      background: rgba(255,255,255,0.08);
      border-radius: 10px;
-     /* position: relative; */
     max-width: 90%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* overflow: inherit; */
-    /* flex-wrap: nowrap; */
-     padding: 15px;
-     margin: 8px ;
-     font-size: 1.3rem;
-     
-       box-shadow:  0 1px 4px rgba(7, 16, 198, 0.601);
+    padding: 15px;
+    margin: 8px ;
+    font-size: 1.3rem;
+    box-shadow:  0 1px 4px rgba(7, 16, 198, 0.601);
   
 }
+
+
+.current_projet{
+          background-color: rgba(0, 0, 255, 0.028);
+          p{color: blue ;}
+   
+
+    }
 .delete_btn{
     width: 30px;
     height: 30px;
-    /* background-color: rgba(255, 0, 0, 0.58); */
     color: rgba(255, 0, 0, 0.779);
     background-color: transparent;
     box-shadow: 0 1px 4px rgba(7, 16, 198, 0.601);;
@@ -170,19 +171,14 @@ justify-content: center;
 }
 .menu{
     transform: scale(1.3);
-    /* display: flex; */
-    /* align-items: center; */
-       display: flex;
-  width: 15px;
+    display: flex;
+     width: 15px;
     height: 100%;
-    /* padding:   10px auto; */
     text-align: center;
     padding:  7px;
     align-items: center;
     justify-content: space-between;
-
     position: relative;
- 
     flex-direction: column;
     box-sizing: border-box;
 
@@ -194,16 +190,11 @@ justify-content: center;
     top: 0;
      z-index: 5000;
      transition: 5s;
-     /* width: 90px; */
      background-color: #ccc;
-     /* height: 90px; */
      background-color: transparent;
     border-radius: 10px;
      display: none;    transition:1s;
-    /* padding: 3px; */
-    /* align-items: center; */
    background-color: #0A0d1A;;
-
     justify-content: center;
     box-shadow: 0 1px 4px rgba(7, 16, 198, 0.601);;
     flex-direction: column;
@@ -240,8 +231,6 @@ top: 0;}
 } 
 
 .deleteTask,.afaire,.encours,.termine{
-    /* color: #0A0d1A; */
-    /* margin: 1px; */
     padding: 5px;
     margin: 5px;
     background-color: transparent;
@@ -258,7 +247,6 @@ h2{
 box-shadow: 0px 1px 4px #000;
   background: rgba(255,255,255,0.05);
   background: linear-gradient(135deg, #6c5ce7b1, #00cecba6);
-  /* background-color: #f7f7f7; */
   padding: 10px;
   border-radius: 10px;
 }
@@ -266,19 +254,9 @@ box-shadow: 0px 1px 4px #000;
 opacity: 1;
 display: flex; 
 }
-
-
-
-
-
- 
 .contenteneur_projets{
     height: 60%;
-    
-    /* flex-shrink: 0; */
     overflow: scroll;
-     /* background-color: #0A0d1A;; */
-
     &::-webkit-scrollbar{
         display: none;
     }
@@ -292,8 +270,6 @@ display: flex;
     overflow:scroll;
     height: 80%;
     background-color: #0A0d1A;;
-    /* border: 2px solid #cccccc1e; */
-    /* border:  solid 8PX rgba(0, 0, 0, 0.168); */
     margin-top: 10px;
     flex-shrink: 0;
     border-radius: 35px;
@@ -319,14 +295,16 @@ display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: center;
-}
-.current_projet{
-    /* background-color: #6c5ce7; */
-    /* font-size: 100px; */
-    background-color: rgba(0, 0, 0, 0.308) !important;
-/* transform: scale(1.4); */
-}
+    transform: translateY(10px);
 
+}
+.hidden2{
+    opacity: 0;
+}
+.show_task{
+    transition: 1.5s;
+    transform: translateY(0);
+}
 
 .drag-over{
       background: rgba(0, 206, 201, 0.15);
@@ -348,6 +326,7 @@ menu{
     align-items: center;
     display: none;
 }
+
 .menu_item{
     box-shadow:0 1px 4px rgba(7, 16, 198, 0.601);
     padding: 3px 7px;
@@ -355,16 +334,11 @@ menu{
     border-radius: 4px ;
 }
 
-/* responsive */
-
-
 .displayed_project{
-padding: 10px 20px;
-box-shadow: 0 1px 4px rgba(7, 16, 198, 0.601);;
-text-align: center;
-    /* margin: 10px auto; */
+    padding: 10px 20px;
+    box-shadow: 0 1px 4px rgba(7, 16, 198, 0.601);;
+    text-align: center;
     border-radius: 10px;
-    /* width: 70%; */
     margin: 0 10px;
     display: none;
 }
@@ -379,24 +353,16 @@ text-align: center;
 }
 @media screen and (max-width:850px) {
     aside{
-        /* transform: translateX(-1999px); */
-        /* display: none; */
         position: absolute;
-        top: -80px;
+        /* top: -80px; */
         width: 70%;
-        /* display: none; */
-        /* transform: translatey(-1000px);
-         */
-         /* right: 0; */
-         left: -500px;
-         
+        left: -500px;
         transition: 0.5s;
-        z-index: 10;
+        z-index: 1000;
         background-color: #0A0d1A;
-        right: -100000px;
+        /* right: -100000px; */
         transition: 1s;
         height: 100vh;
-        /* display: none; */
     }
     .adding_place{
   display: flex;
@@ -425,33 +391,43 @@ text-align: center;
 
     menu{
         display: flex;
+                text-transform: capitalize;
 
     }
     .current_menu{
-        background-color: rgba(0, 0, 255, 0.757);
+        background-color: rgba(0, 0, 255, 0.028);
+        color: blue;
     }
     .show_aside{
-    
-        /* height: 80%; */
-        /* flex-shrink: 0; */
-        /* overflow: hidden; */
-        /* bottom: 0; */
-        /* right: 0; */
-        left:0;
-        /* display: inline-block; */
-            /* transform: translateX(0); */
-           transition: 0.5s;
+        left: 0;
+        transition: 0.5s;
     }
     .switch_projet{
         display: inline-block;}
     .contenteneur_projets{
-            /* overflow: scroll; */
             height: 80%;
     }
     .displayed_project{
         display: inline-block;
-
+           max-width: 35%;
     }
+    .taches_input{
+     max-width: 35%;
+    }
+}
+
+.task_modifying{
+    height: 100%;
+    color: #ccc;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border-radius: 8px;
+    margin: 0;
+    padding: 8px;
+    max-width: 90%;
+     background: rgba(255,255,255,0.08);;
+     border: none;
+
 }
 
 

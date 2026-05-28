@@ -1,14 +1,12 @@
 
 const input_projet=get_element('.input_projet');
+const input_task = get_element('.taches_input');
 
+const tache_priority = get_element('select');
 
-const input_task=get_element('.taches_input');
+const consteneur = get_element('aside');
 
-const tache_priority=get_element('select');
-
-const consteneur=get_element('aside');
-
-const consteneur_tasks=get_element('.contenteur_tasks');
+const consteneur_tasks = get_element('.contenteur_tasks');
 
 const conteneur_projet=consteneur.querySelector('div');
 const menu_elements=document.querySelectorAll('.menu_item')
@@ -16,7 +14,8 @@ const menu_item0=get_element('.menu_item0');
 const menu_item1=get_element('.menu_item1');
 const menu_item2=get_element('.menu_item2');
 const displayed_projet=get_element('.displayed_project');
-const switch_projet=get_element('.switch_projet')
+const switch_projet=get_element('.switch_projet') ;
+let effect_observeur = true ;
 
 const state = {
     data : [],      //stokage de la base dans la ram pour ne pas manipuler le localstock
@@ -117,16 +116,13 @@ save();
 
 function render(){
     //  consteneur.classList.remove('show_aside')
-    while(consteneur_tasks.firstElementChild){consteneur_tasks.firstElementChild.remove()}
-conteneur_projet.innerHTML = '';
-
 render_projet();
 render_tasks();
 };
 
 
 function render_projet(){
-
+conteneur_projet.innerHTML = '';
 state.data.forEach(element => {
 const supprimer = create_element('button');
 const project_div = creat_projet(element,supprimer)
@@ -144,8 +140,11 @@ function events_on_projets(project_div,supprimer,element,id){
       if(state.data.length === 1){
         delete_projet(id);
         state.current = '';
-        localStorage.setItem('first',JSON.stringify('false'))
-           return ;
+        //state.current=='' est gere dans l'affichage des taches;
+        localStorage.setItem('first',JSON.stringify('false'));
+            //permet de savoir si c'est l'utilisateur qui a efface le projet par defaut 
+            // pour ne plus lui montrer ce dernier au next open.
+           return;
         };
         if(id<=state.data.length-2)
             {state.current=state.data[id+1].id;}
@@ -190,6 +189,7 @@ function change_current_projet(element){
 
 function render_tasks(){
 
+    while(consteneur_tasks.firstElementChild){consteneur_tasks.firstElementChild.remove()}
 if(state.data.length !== 0){
     const projet=getActive();
     projet.tasks.forEach(task_column=>{
@@ -201,9 +201,10 @@ if(state.data.length !== 0){
     create_tasks(task_column,con_tasks)
     consteneur_tasks.appendChild(column);
     events(column,task_column,projet)
-
+      
 
     })
+    effect_observeur=false;
 };
 
 
@@ -223,13 +224,13 @@ function events(column,task_column,projet){
         projet.tasks[task_column.id].colonne.push(element);
         projet.tasks[state.dragged.del].colonne.splice(state.dragged.from,1)
         save();
-        render();})
+        render_tasks();})
 };
 
 
 function get_dragging(){
     const projet = getActive();
-    const element=projet.tasks[state.dragged.del].colonne.find(t=>projet.tasks[state.dragged.del].colonne.indexOf(t)===state.dragged.from);
+    const element = projet.tasks[state.dragged.del].colonne.find(t => projet.tasks[state.dragged.del].colonne.indexOf(t)=== state.dragged.from);
    return element;
 
 
@@ -311,11 +312,7 @@ const  project=getActive();
 
    deleteTask(colonne,index);
 
-   }
-
-
-   
-   
+   } 
 }
 
 function  create_tasks(tasks,boite){
@@ -323,27 +320,36 @@ tasks.colonne.forEach(task=>{
     const menu=create_element('div');
     const task_item=create_element('div');
     const task_name=create_element('h3');
+    task_item.classList.add('hidden');
     task_name.innerText=task;
     task_item.appendChild(task_name);
+if(effect_observeur===true){observateur.observe(task_item)};
+  
     task_item.appendChild(menu);
-    // menu.innerText=".      .";
+
+  
+   task_item.onclick = (e) =>{
+    e.stopPropagation()
+    make_input(task_item,tasks.colonne,task)};
     menu.classList.add('menu');
     const  div_menu =  display_task_menu(tasks.id,tasks.colonne.indexOf(task));
     menu.appendChild(div_menu);
   
-     menu.addEventListener('click' ,essaie)
-    function essaie(e){
+     menu.addEventListener('click' ,show_menu);
+    function show_menu(e){
         e.stopPropagation();
-        menu.classList.toggle('hidden');
-        let i=0
+        let i=0;
+        // recuperation des menus de toutes les taches
     const liste=document.querySelectorAll('.div_menu');
-    if(div_menu.classList.contains('show')){i=7}
+    if(div_menu.classList.contains('show')){
+        // si div_menu est deja affiche on change i pour apres l'affiche
+        i=1}
 
     liste.forEach(div=>{if(div.classList.contains('show'))
-        {div.classList.remove('show')}
+        {div.classList.remove('show')};
     })
 
-        if(i===0){div_menu.classList.add('show')}
+     if(i===0){div_menu.classList.add('show')};
       
     }
 
@@ -355,10 +361,7 @@ tasks.colonne.forEach(task=>{
     task_item.classList.add("dragging");
        
     };
-
-
     boite.appendChild(task_item);
-    
 })
 
 }
@@ -384,10 +387,10 @@ function blind(){
     menu_item0.onclick=()=>{
     const is_datas=is_data();
   if(is_datas!=false){
-     change_menu_item(menu_item0);
+    change_menu_item(menu_item0);
     const  project=getActive();
     project.tasks[0].disp='dispo';
-    render()
+    render_tasks()
     }}
 
       menu_item1.onclick=()=>{
@@ -396,7 +399,7 @@ function blind(){
         change_menu_item(menu_item1);
         const  project=getActive();
         project.tasks[1].disp='dispo';
-          render()
+          render_tasks()
     }}
     
       menu_item2.onclick=()=>{
@@ -407,7 +410,7 @@ function blind(){
 
         const  project=getActive();
         project.tasks[2].disp='dispo';
-        render()
+        render_tasks()
     }}
 
 
@@ -427,9 +430,8 @@ function blind(){
         consteneur.classList.toggle('show_aside')
     })
 
-    window.onclick=(e)=>{
+    window.onclick = (e)=>{
         e.stopPropagation()
-        render();
          consteneur.classList.remove('show_aside')
     };
 };
@@ -438,8 +440,8 @@ function is_data(){
       if(state.data.length===0){return false}
 }
 
-function add_projet(e){
-    e.stopPropagation()
+function add_projet(){
+
    if(input_projet.value == '') return ;
     const new_d={
         id:Date.now(),
@@ -451,8 +453,11 @@ function add_projet(e){
 
     state.current=new_d.id;
     change_menu_item(menu_item0);
-    new_d.tasks[0].disp='dispo'
+    new_d.tasks[0].disp='dispo';
     input_projet.value = '';
+    
+    
+
     
 save()
 render()
@@ -463,27 +468,88 @@ render()
 function delete_projet(index){
      state.data.splice(index,1) ;
      save()
-     render() ;
+     render();
 };
 
 
 function deleteTask(task,index){
     const projet=getActive()
     projet.tasks[task].colonne.splice(index,1);
-    render()
-    save()
+    save();
+    render_tasks()
 }
 
 function add_task(){
-    if(input_task.value == '' || state.current == '') return ;
+    if(input_task.value == '' || state.current == '') return 
    const projet=getActive();
    projet.tasks[0].colonne.push(input_task.value);
    state.data[state.data.indexOf(projet)]=projet;
+
    save();
    input_task.value = '';
-   render();
+   render_tasks();
 }
+
+let i=0;
+function make_input(task_item,tasks,task){
+
+  
+const element = task_item.firstElementChild;
+
+
+
+function transform_to_input(){
+    const element = task_item.firstElementChild;
+    if(element.value){const div = create_element('h3');
+    div.innerText = element.value;
+    task_item.replaceChild(div,element);
+    tasks[tasks.indexOf(task)] = element.value ;
+    save();
+    }
+   
+}
+
+if(!element.value){
+     
+    const  input = create_element('input');
+    input.classList.add('task_modifying')
+    input.value = element.innerText;
+    task_item.replaceChild(input,element)
+    input.focus();
+
+   
+}else{
+   // if(e.target == element || e.target == get_element('body')){
+
+  transform_to_input()
+
+}
+
+      window.onclick = () =>{
+        {transform_to_input()}
+    }
+};
+
+function make_div(input){
+
+}
+
+const observateur=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add('show_task');
+            entry.target.classList.remove('hidden');
+        }
+    })
+},{threshold:0.2})
 unit()
+
+
+
+
+
+
+
 // function start(e){
 // e.dataTransfer.effectAllowed='move';
 // e.dataTransfer.setData('text',e.target.getAttribute('id'))
@@ -509,3 +575,16 @@ unit()
 
 // sinatique
 // bounnerie
+
+// dotnet new console -n MonProjet
+// Entre dans le dossier :
+// cd MonProjet
+// code .
+// Lance le projet :
+// dotnet run
+
+// ✔ Résultat : ton programme C# s’exécute dans VS Code.
+
+// Des réponses plus intelligentes, le chargement de fichiers et d’images, et bien plus encore.
+// Se connecter
+// Inscription gratuite

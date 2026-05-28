@@ -1,0 +1,15 @@
+c:\Users\hamidou\Desktop\projet\MonProjet\bin\Debug\net10.0\MonProjet.exe
+C:\Users\hamidou\Desktop\projet\MonProjet\bin\Debug\net10.0\MonProjet.deps.json
+C:\Users\hamidou\Desktop\projet\MonProjet\bin\Debug\net10.0\MonProjet.runtimeconfig.json
+c:\Users\hamidou\Desktop\projet\MonProjet\bin\Debug\net10.0\MonProjet.dll
+c:\Users\hamidou\Desktop\projet\MonProjet\bin\Debug\net10.0\MonProjet.pdb
+c:\Users\hamidou\Desktop\projet\MonProjet\obj\Debug\net10.0\MonProjet.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\hamidou\Desktop\projet\MonProjet\obj\Debug\net10.0\MonProjet.AssemblyInfoInputs.cache
+c:\Users\hamidou\Desktop\projet\MonProjet\obj\Debug\net10.0\MonProjet.AssemblyInfo.cs
+c:\Users\hamidou\Desktop\projet\MonProjet\obj\Debug\net10.0\MonProjet.csproj.CoreCompileInputs.cache
+c:\Users\hamidou\Desktop\projet\MonProjet\obj\Debug\net10.0\MonProjet.sourcelink.json
+c:\Users\hamidou\Desktop\projet\MonProjet\obj\Debug\net10.0\MonProjet.dll
+c:\Users\hamidou\Desktop\projet\MonProjet\obj\Debug\net10.0\refint\MonProjet.dll
+c:\Users\hamidou\Desktop\projet\MonProjet\obj\Debug\net10.0\MonProjet.pdb
+C:\Users\hamidou\Desktop\projet\MonProjet\obj\Debug\net10.0\MonProjet.genruntimeconfig.cache
+C:\Users\hamidou\Desktop\projet\MonProjet\obj\Debug\net10.0\ref\MonProjet.dll
