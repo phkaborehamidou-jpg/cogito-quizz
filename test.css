@@ -28,7 +28,7 @@ body{
       overflow: hidden;
       box-sizing: border-box;
       scroll-behavior: none;
-  
+    
     
 }
 
@@ -90,9 +90,7 @@ main{
     /* height: calc(-100%+80px); */
     height: 100vh;
     position: relative;
-    
-    max-height: 100vh;
-    max-height: 100vw;
+    max-height: 100dvh;
     /* overflow: hidden; */
 }
 aside{
@@ -419,6 +417,10 @@ menu{
            }
 
     }
+ 
+  
+    h3{font-size: 14px;}
+    h2{font-size: 18px;}
     .taches_input{
      max-width: 35%;
     }
