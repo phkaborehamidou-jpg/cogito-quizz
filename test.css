@@ -365,7 +365,7 @@ menu{
         background-color: #0A0d1A;
         /* right: -100000px; */
         transition: 1s;
-        height: 100vh;
+        
     }
     .adding_place{
   display: flex;
