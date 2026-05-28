@@ -28,7 +28,7 @@ body{
       overflow: hidden;
       box-sizing: border-box;
       scroll-behavior: none;
-      height: 100dvh;
+      height: 90dvh;
     
     
 }
@@ -91,7 +91,7 @@ main{
     /* height: calc(-100%+80px); */
     
     position: relative;
-    height: 100dvh;
+    height: 90dvh;
     /* overflow: hidden; */
 }
 aside{
@@ -130,7 +130,7 @@ margin-top: 5px;
 }
 .contenteur_tasks .task_boite{
   border-radius: 10px;
-  height: 90dvh;
+  height: 85dvh;
   box-shadow:  0 1px 4px rgba(7, 16, 198, 0.601);
   padding: 10px;
   overflow: hidden;
