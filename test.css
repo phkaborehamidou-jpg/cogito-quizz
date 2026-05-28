@@ -90,6 +90,9 @@ main{
     /* height: calc(-100%+80px); */
     height: 100vh;
     position: relative;
+    
+    max-height: 100vh;
+    max-height: 100vw;
     /* overflow: hidden; */
 }
 aside{
@@ -410,10 +413,18 @@ menu{
     .displayed_project{
         display: inline-block;
            max-width: 35%;
+           overflow: scroll;
+           &::-webkit-scrollbar{
+            display: none;
+           }
+
     }
     .taches_input{
      max-width: 35%;
     }
+    .input_projet{
+    max-width: 30%;
+}
 }
 
 .task_modifying{
