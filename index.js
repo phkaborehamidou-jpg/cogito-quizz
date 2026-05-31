@@ -14,7 +14,9 @@ const menu_item0=get_element('.menu_item0');
 const menu_item1=get_element('.menu_item1');
 const menu_item2=get_element('.menu_item2');
 const displayed_projet=get_element('.displayed_project');
-const switch_projet=get_element('.switch_projet') ;
+
+const switch_projet= get_element('.switch_projet') ;
+
 let effect_observeur = true ;
 
 const state = {
@@ -329,7 +331,7 @@ if(effect_observeur===true){observateur.observe(task_item)};
 
   
    task_item.onclick = (e) =>{
-    e.stopPropagation()
+    e.stopPropagation();
     make_input(task_item,tasks.colonne,task)};
     menu.classList.add('menu');
     const  div_menu =  display_task_menu(tasks.id,tasks.colonne.indexOf(task));
@@ -414,6 +416,13 @@ function blind(){
     }}
 
 
+     switch_projet.addEventListener('mousedown',(e) =>{
+        // e.stopPropagation();
+     
+        console.log('ca amcg')
+        consteneur.classList.toggle('show_aside')
+    })
+
 
 
 
@@ -425,15 +434,14 @@ function blind(){
     //     }
     // })
 
-    switch_projet.addEventListener('click',(e)=>{
-        e.stopPropagation()
-        consteneur.classList.toggle('show_aside')
-    })
+   
 
-    window.onclick = (e)=>{
-        e.stopPropagation()
-         consteneur.classList.remove('show_aside')
-    };
+    // window.onclick = (e)=>{
+    //     e.stopPropagation()
+    //     alert('kjj')
+    //     //  consteneur.classList.remove('show_aside')
+    // };
+
 };
 
 function is_data(){
@@ -480,7 +488,7 @@ function deleteTask(task,index){
 }
 
 function add_task(){
-    if(input_task.value == '' || state.current == '') return 
+    if(input_task.value == '' || state.current == '') return ;
    const projet=getActive();
    projet.tasks[0].colonne.push(input_task.value);
    state.data[state.data.indexOf(projet)]=projet;
@@ -490,14 +498,10 @@ function add_task(){
    render_tasks();
 }
 
-let i=0;
 function make_input(task_item,tasks,task){
 
   
 const element = task_item.firstElementChild;
-
-
-
 function transform_to_input(){
     const element = task_item.firstElementChild;
     if(element.value){const div = create_element('h3');
@@ -530,9 +534,7 @@ if(!element.value){
     }
 };
 
-function make_div(input){
 
-}
 
 const observateur=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{

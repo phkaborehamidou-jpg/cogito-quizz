@@ -2,50 +2,42 @@
 padding: 0;
 margin: 0;
 color: #ccc;
-
-  box-sizing: border-box;
-  font-family: Inter, Arial;
+box-sizing: border-box; 
+font-family: Inter, Arial;
   
-}
-html{
-    color-scheme: dark;
-}
-.head{
-    /* margin-left: 10px; */
-    display: flex;
-    justify-content: space-around;
+} 
 
-}
-
-body{
-
-      background-color: #0A0d1A;;
-      overflow: hidden;
-      
-      position: relative;
-      flex-shrink: 0;
-      width: 100%;
-      overflow: hidden;
-      box-sizing: border-box;
-      scroll-behavior: none;
-      height: 100dvh;
-    
-    
-}
 
 header{
-position: fixed;
+
 background: rgba(255,255,255,0.05);
-z-index: 10;
-height: 40px;
 backdrop-filter: blur(10px);
 width: 100%;
-display: flex;
 justify-content: space-evenly;
 box-shadow: 0px 1px 4px #000;
 align-items: center;
 top: 0;
-/* padding-bottom: (100%); */
+position:fixed;
+z-index: 11;
+}
+
+body{
+z-index: 1;
+      background-color: #0A0d1A;;
+      width: 100%;
+      height: 100dvh;
+      flex-shrink: 0;
+      overflow: hidden;
+    
+} 
+
+.head{
+
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    pointer-events: auto;
+    /* z-index: 777; */
 
 }
 
@@ -81,26 +73,22 @@ top: 0;
 }
 main{
 
-    z-index: 10;
+   
     display: grid;
     grid-template-columns: repeat(4,1fr);
     position: relative;
-
+    height: 100%;
 padding-top: 40px;
-height: (100dvh-40px);
-    /* overflow: hidden; */
 }
 aside{
-    /* background-color: #6c5ce7; */
      border-right: 1px solid rgba(255,255,255,0.1);
      margin-right: 10px;
-     /* flex-shrink: 0; */
     overflow: hidden;
+    height: 99dvh;
+    
 }
 .taches_place{
-    /* background-color: brown; */
     height: 100%;
-    /* height: 20px; */
     grid-column-start: 2;
     grid-column-end: 5;
     overflow: hidden;
@@ -123,21 +111,17 @@ height: 40px;
     gap: 10px;
     
     margin:10px 20px ;
-/* overflow: hidden; */
+    height:80% ;
+
 
 }
 .contenteur_tasks .task_boite{
   border-radius: 10px;
-  height: 60%;
   box-shadow:  0 1px 4px rgba(7, 16, 198, 0.601);
   padding: 10px;
   overflow: hidden;
   background-color: #0A0d1A;
   margin-bottom: 10px;
-
-
-  
-
 }
 
 .projet{
@@ -190,7 +174,7 @@ height: 40px;
     position: absolute;
     right: 18px;
     top: 0;
-     z-index: 5000;
+     
      transition: 5s;
      background-color: #ccc;
      background-color: transparent;
@@ -246,11 +230,12 @@ top: 0;}
 }
 
 h2{
-box-shadow: 0px 1px 4px #000;
-  background: rgba(255,255,255,0.05);
+/* box-shadow: 0px 1px 4px #000; */
   background: linear-gradient(135deg, #6c5ce7b1, #00cecba6);
-  padding: 10px;
-  border-radius: 10px;
+  padding: 4px;
+  border-radius: 7px;
+  text-transform: uppercase;
+
 }
 .show{
 opacity: 1;
@@ -270,7 +255,7 @@ display: flex;
     
     width: 100%;
     overflow:scroll;
-    height: 80%;
+    height: 90%;
     background-color: #0A0d1A;;
     margin-top: 10px;
     flex-shrink: 0;
@@ -287,10 +272,7 @@ display: flex;
     font-size: 1.3rem;
     box-shadow:  0 1px 4px rgba(7, 16, 198, 0.601);
     border-radius: 10px
-
-          
-
-    ;}
+}
 }
 .task{
     display: flex;
@@ -345,27 +327,35 @@ menu{
     margin: 0 10px;
     display: none;
 }
+
 .switch_projet{
+    position: relative;
     border: solid 5px  ;
     padding: 2px;
     border-radius: 10px;
     z-index: 1000;
     display: none;
-    /* position: relative; */
+    pointer-events: auto;
 
 }
+
 @media screen and (max-width:850px) {
     aside{
         position: absolute;
-        /* top: -80px; */
         width: 70%;
         left: -500px;
         transition: 0.5s;
-        z-index: 1000;
+        z-index: 10;
         background-color: #0A0d1A;
-        /* right: -100000px; */
+         z-index: 20;
         transition: 1s;
         
+    }
+     .switch_projet{
+        display: inline-block;
+        background-color: crimson;
+    
+        pointer-events: auto;
     }
     .adding_place{
   display: flex;
@@ -373,11 +363,7 @@ menu{
   text-align: center;
   justify-content: space-around;
   width: 100%;
-
-
 }
-
-
     .taches_place{
         grid-column-start: 1;
     }
@@ -405,8 +391,7 @@ menu{
         left: 0;
         transition: 0.5s;
     }
-    .switch_projet{
-        display: inline-block;}
+   
     .contenteneur_projets{
             height: 80%;
     }
@@ -414,13 +399,12 @@ menu{
         display: inline-block;
            max-width: 35%;
            overflow: scroll;
+           padding: 7px;
            &::-webkit-scrollbar{
             display: none;
            }
 
     }
- 
-  
     h3{font-size: 14px;}
     h2{font-size: 18px;}
     .taches_input{
@@ -443,5 +427,4 @@ menu{
     max-width: 90%;
      background: rgba(255,255,255,0.08);;
      border: none;
-
 }
