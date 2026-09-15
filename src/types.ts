@@ -6,10 +6,7 @@ export  type ville = (typeof VILLES)[number]
 export interface House {
   id: number;
   name: string;
-  emplacement: {
-    ville: ville;
-    quartier: string;
-  };
+  emplacement: { ville: ville;quartier: string;};
   description: string;
   contact: string;
   prix: number;

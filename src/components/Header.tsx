@@ -47,7 +47,7 @@ function Header({ currentPage, onNavigate, ville, onVilleChange, favoritesCount 
               <House size={20}  className='home-mobile' color="#1683ff"></House> 
              
               <h1>
-                <span>g</span>et<span>h</span>ouse
+                <span>g</span>et<span>h</span>ouse hamidou
               </h1>
           </div>
           <div className='menu-left-mobile'>
