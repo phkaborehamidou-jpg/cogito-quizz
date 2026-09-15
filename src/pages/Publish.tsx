@@ -1,10 +1,11 @@
 import { useState, useRef } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { Upload, ArrowLeft } from 'lucide-react';
-import type { Category, House } from '../types';
+import type { Category, House, ville } from '../types';
 import { VILLES } from '../types';
 import { CATEGORIES } from '../categories';
 import { IMAGE_FALLBACK } from '../utils';
+
 
 const EQUIPEMENTS = [
   'Piscine',
@@ -53,7 +54,7 @@ function Field({ label, type = 'text', value, onChange, placeholder, required, m
 
 function Publish({ onPublish, onCancel }: PublishProps) {
   const [name, setName] = useState('');
-  const [ville, setVille] = useState<string>(VILLES[0]);
+  const [ville, setVille] = useState<ville>(VILLES[0]);
   const [quartier, setQuartier] = useState('');
   const [prix, setPrix] = useState('');
   const [chambres, setChambres] = useState('1');
@@ -131,7 +132,7 @@ function Publish({ onPublish, onCancel }: PublishProps) {
 
           <div className="formEL">
             <label>Ville<span className="req">*</span></label>
-            <select value={ville} onChange={(e) => setVille(e.target.value)}>
+            <select value={ville} onChange={(e) => setVille(e.target.value as ville)}>
               {VILLES.map((v) => (
                 <option key={v} value={v}>{v}</option>
               ))}

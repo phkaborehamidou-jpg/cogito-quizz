@@ -1,5 +1,6 @@
 import type { House } from './types';
 
+
 const img = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=900&q=80`;
 

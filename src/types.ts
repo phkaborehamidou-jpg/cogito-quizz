@@ -1,10 +1,13 @@
 export type Category = 'maison' | 'appartement' | 'studio' | 'villa' | 'bureau';
+export type PageId = 'home' | 'favorites' | 'messages' | 'profile' | 'publish';
 
+export const VILLES = ['Ouagadougou', 'Bobo-Dioulasso', 'Koudougou'] as const;
+export  type ville = (typeof VILLES)[number]
 export interface House {
   id: number;
   name: string;
   emplacement: {
-    ville: typeof VILLES[number];
+    ville: ville;
     quartier: string;
   };
   description: string;
@@ -19,6 +22,3 @@ export interface House {
   nouveau: boolean;
 }
 
-export type PageId = 'home' | 'favorites' | 'messages' | 'profile' | 'publish';
-
-export const VILLES = ['Ouagadougou', 'Bobo-Dioulasso', 'Koudougou'] as const;
